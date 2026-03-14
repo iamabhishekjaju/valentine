@@ -127,8 +127,6 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             color: rgba(255,200,220,0.7);
             margin-bottom: 30px;
         }
-
-        /* BUTTONS AREA */
         .buttons-container {
             display: flex;
             justify-content: center;
@@ -136,7 +134,6 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             margin-top: 30px;
             align-items: center;
         }
-
         .btn-yes {
             padding: 16px 55px;
             font-size: 22px;
@@ -162,7 +159,7 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             box-shadow: 0 0 50px rgba(255,64,129,0.6);
         }
 
-        /* NO BUTTON - VISIBLE AND BIG */
+        /* NO BUTTON */
         .btn-no {
             padding: 16px 55px;
             font-size: 22px;
@@ -171,17 +168,18 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             border: 2px solid #ff6b9d;
             border-radius: 50px;
             cursor: pointer;
-            background: rgba(255, 64, 129, 0.15);
+            background: rgba(255, 64, 129, 0.2);
             color: #ff9dc4;
+            position: fixed;
             z-index: 9999;
             user-select: none;
-            transition: none;
+            box-shadow: 0 0 25px rgba(255,64,129,0.4);
+            transition: left 0.8s ease-in-out, top 0.8s ease-in-out;
+            white-space: nowrap;
         }
 
-        .btn-no.running {
-            position: fixed !important;
-            transition: left 0.2s ease, top 0.2s ease;
-            box-shadow: 0 0 20px rgba(255,64,129,0.4);
+        .btn-no.fast {
+            transition: left 0.15s ease, top 0.15s ease;
         }
 
         .no-attempts {
@@ -269,7 +267,6 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             75% { transform: translateY(75vh) rotate(270deg) translateX(25px); }
             100% { transform: translateY(110vh) rotate(360deg) translateX(-10px); opacity:0; }
         }
-
         .envelope-icon {
             font-size: 40px;
             margin-bottom: 10px;
@@ -279,7 +276,6 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-
         @media (max-width: 600px) {
             .card { padding: 30px 20px; }
             .name-kajal { font-size: 38px; }
@@ -288,8 +284,7 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             .success-title { font-size: 38px; }
             .success-message { font-size: 22px; }
             .btn-yes { padding: 14px 40px; font-size: 20px; }
-            .btn-no { padding: 14px 40px; font-size: 20px; }
-            .buttons-container { gap: 25px; }
+            .btn-no { padding: 14px 40px; font-size: 18px; }
         }
     </style>
 </head>
@@ -311,7 +306,6 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             <div class="question-sub">~ From your loving husband, Abhishek 💝</div>
             <div class="buttons-container" id="buttonsContainer">
                 <button class="btn-yes" id="btnYes" onclick="sayYes()">💖 Yes! 💖</button>
-                <button class="btn-no" id="btnNo">No 😢</button>
             </div>
             <div class="no-attempts" id="noAttempts"></div>
         </div>
@@ -328,6 +322,9 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             </div>
         </div>
     </div>
+
+    <!-- NO BUTTON lives outside the card so it can move freely -->
+    <button class="btn-no" id="btnNo">No 😢</button>
 
 <script>
 // Background Hearts
@@ -370,11 +367,25 @@ setInterval(function(){
     setTimeout(function(){p.remove();},10000);
 },800);
 
-// ============ NO BUTTON LOGIC ============
+
+// ============================================
+//  NO BUTTON - ALWAYS MOVING & ALWAYS VISIBLE
+// ============================================
+
 var btnNo = document.getElementById('btnNo');
 var noAttempts = document.getElementById('noAttempts');
 var attempts = 0;
-var isRunning = false;
+var noStopped = false;
+var currentX = 0;
+var currentY = 0;
+var targetX = 0;
+var targetY = 0;
+var moveSpeed = 0.02; // smooth movement speed
+var btnW = 155;
+var btnH = 55;
+var safeMargin = 15;
+var autoMoveInterval;
+var isFleeing = false;
 
 var msgs = [
     "Haha! Nice try Kajal! 😜",
@@ -383,40 +394,120 @@ var msgs = [
     "Abhishek wont allow No! 💪❤️",
     "Shivaay says: Mumma say Yes! 🥺👶",
     "Button knows answer is Yes! 😄",
-    "Stop chasing No! 💖",
-    "No button left the chat! 😂",
-    "You cant catch me! ~ No 🏃",
-    "Just click Yes Kajal! 😘",
-    "Abhishek and Shivaay waiting! 🥰",
+    "Stop chasing No! Yes is waiting! 💖",
+    "No button says: Catch me if you can! 😂",
+    "You cant catch me! ~ No Button 🏃",
+    "Just click Yes already Kajal! 😘",
+    "Abhishek and Shivaay are waiting! 🥰",
     "Universe wants you to say Yes! ✨",
     "No is not your destiny! 😄💕",
-    "Give up and say Yes! 💝",
-    "I am too fast for you! 😂🏃",
-    "Why you chasing me? Yes is right there! 💖"
+    "Give up chasing me! Say Yes! 💝",
+    "I am too fast for you Kajal! 😂🏃",
+    "This button has a mind of its own! 🤪"
 ];
 
-function runAway() {
-    if (!isRunning) {
-        isRunning = true;
-        btnNo.classList.add('running');
-    }
+// Get safe position within screen
+function getSafePosition() {
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    var x = safeMargin + Math.random() * (vw - btnW - safeMargin * 2);
+    var y = safeMargin + Math.random() * (vh - btnH - safeMargin * 2);
+    return { x: x, y: y };
+}
+
+// Clamp position to screen
+function clamp(val, min, max) {
+    return Math.max(min, Math.min(max, val));
+}
+
+// Set initial position
+var initPos = getSafePosition();
+currentX = initPos.x;
+currentY = initPos.y;
+targetX = currentX;
+targetY = currentY;
+btnNo.style.left = currentX + 'px';
+btnNo.style.top = currentY + 'px';
+
+// Pick new random target every 1.5 seconds (auto roaming)
+function pickNewTarget() {
+    if (isFleeing) return;
+    var pos = getSafePosition();
+    targetX = pos.x;
+    targetY = pos.y;
+}
+
+autoMoveInterval = setInterval(pickNewTarget, 1500);
+
+// Smooth animation loop - button glides toward target
+function animateButton() {
+    if (noStopped) return;
 
     var vw = window.innerWidth;
     var vh = window.innerHeight;
-    var btnW = 160;
-    var btnH = 55;
-    var margin = 30;
 
-    var newX = margin + Math.random() * (vw - btnW - margin * 2);
-    var newY = margin + Math.random() * (vh - btnH - margin * 2);
+    // Move toward target smoothly
+    var speed = isFleeing ? 0.15 : 0.03;
+    currentX += (targetX - currentX) * speed;
+    currentY += (targetY - currentY) * speed;
 
-    btnNo.style.left = newX + 'px';
-    btnNo.style.top = newY + 'px';
+    // Clamp within screen
+    currentX = clamp(currentX, safeMargin, vw - btnW - safeMargin);
+    currentY = clamp(currentY, safeMargin, vh - btnH - safeMargin);
 
-    // Random rotation and scale for fun
-    var rot = (Math.random() - 0.5) * 40;
-    var sc = 0.6 + Math.random() * 0.6;
-    btnNo.style.transform = 'scale(' + sc + ') rotate(' + rot + 'deg)';
+    btnNo.style.left = currentX + 'px';
+    btnNo.style.top = currentY + 'px';
+
+    // If fleeing and reached target, go back to normal
+    if (isFleeing) {
+        var dist = Math.sqrt(Math.pow(targetX - currentX, 2) + Math.pow(targetY - currentY, 2));
+        if (dist < 5) {
+            isFleeing = false;
+        }
+    }
+
+    requestAnimationFrame(animateButton);
+}
+requestAnimationFrame(animateButton);
+
+// FLEE - when mouse/touch gets near
+function fleeFrom(mouseX, mouseY) {
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+
+    // Calculate direction away from mouse
+    var btnCenterX = currentX + btnW / 2;
+    var btnCenterY = currentY + btnH / 2;
+
+    var dx = btnCenterX - mouseX;
+    var dy = btnCenterY - mouseY;
+    var dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist === 0) { dx = 1; dy = 1; dist = 1.414; }
+
+    // Normalize and multiply by flee distance
+    var fleeDist = 200 + Math.random() * 200;
+    var newX = currentX + (dx / dist) * fleeDist;
+    var newY = currentY + (dy / dist) * fleeDist;
+
+    // Add some randomness
+    newX += (Math.random() - 0.5) * 150;
+    newY += (Math.random() - 0.5) * 150;
+
+    // Clamp within screen
+    newX = clamp(newX, safeMargin, vw - btnW - safeMargin);
+    newY = clamp(newY, safeMargin, vh - btnH - safeMargin);
+
+    // If still too close (cornered), jump to opposite side
+    var newDist = Math.sqrt(Math.pow(newX - mouseX, 2) + Math.pow(newY - mouseY, 2));
+    if (newDist < 150) {
+        newX = mouseX < vw / 2 ? vw - btnW - safeMargin - Math.random() * 100 : safeMargin + Math.random() * 100;
+        newY = mouseY < vh / 2 ? vh - btnH - safeMargin - Math.random() * 100 : safeMargin + Math.random() * 100;
+    }
+
+    targetX = clamp(newX, safeMargin, vw - btnW - safeMargin);
+    targetY = clamp(newY, safeMargin, vh - btnH - safeMargin);
+    isFleeing = true;
 
     attempts++;
     noAttempts.textContent = msgs[attempts % msgs.length];
@@ -429,28 +520,66 @@ function runAway() {
     }
 }
 
-// Mouse hover (desktop)
+// Mouse enters the No button
 btnNo.addEventListener('mouseenter', function(e) {
-    e.preventDefault();
-    runAway();
+    fleeFrom(e.clientX, e.clientY);
+});
+
+// Mouse moves near the No button (extra protection)
+document.addEventListener('mousemove', function(e) {
+    var btnRect = btnNo.getBoundingClientRect();
+    var btnCenterX = btnRect.left + btnRect.width / 2;
+    var btnCenterY = btnRect.top + btnRect.height / 2;
+    var dist = Math.sqrt(Math.pow(e.clientX - btnCenterX, 2) + Math.pow(e.clientY - btnCenterY, 2));
+
+    // If mouse within 80px of button center, flee!
+    if (dist < 80) {
+        fleeFrom(e.clientX, e.clientY);
+    }
 });
 
 // Touch (mobile)
 btnNo.addEventListener('touchstart', function(e) {
     e.preventDefault();
-    runAway();
+    var touch = e.touches[0];
+    fleeFrom(touch.clientX, touch.clientY);
 });
 
-// Click safety
+// Touch move near button (mobile)
+document.addEventListener('touchmove', function(e) {
+    var touch = e.touches[0];
+    var btnRect = btnNo.getBoundingClientRect();
+    var btnCenterX = btnRect.left + btnRect.width / 2;
+    var btnCenterY = btnRect.top + btnRect.height / 2;
+    var dist = Math.sqrt(Math.pow(touch.clientX - btnCenterX, 2) + Math.pow(touch.clientY - btnCenterY, 2));
+
+    if (dist < 100) {
+        fleeFrom(touch.clientX, touch.clientY);
+    }
+});
+
+// Click prevention
 btnNo.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
-    runAway();
+    fleeFrom(e.clientX, e.clientY);
     return false;
 });
 
+// Handle window resize
+window.addEventListener('resize', function() {
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    currentX = clamp(currentX, safeMargin, vw - btnW - safeMargin);
+    currentY = clamp(currentY, safeMargin, vh - btnH - safeMargin);
+    targetX = clamp(targetX, safeMargin, vw - btnW - safeMargin);
+    targetY = clamp(targetY, safeMargin, vh - btnH - safeMargin);
+});
+
+
 // ============ YES BUTTON ============
 function sayYes() {
+    noStopped = true;
     document.getElementById('questionCard').style.display = 'none';
     btnNo.style.display = 'none';
     document.getElementById('successScreen').style.display = 'block';
