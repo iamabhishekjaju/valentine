@@ -1,4 +1,3 @@
-cat > ~/Desktop/index.html << 'ENDOFFILE'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +14,7 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            font-family: 'Poppins', sans-serif;
+            font-family: Poppins, sans-serif;
         }
         .bg-heart {
             position: fixed;
@@ -31,11 +30,8 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
         .sparkle {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: white;
-            border-radius: 50%;
+            position: fixed; width: 4px; height: 4px;
+            background: white; border-radius: 50%;
             pointer-events: none;
             animation: twinkle 2s ease-in-out infinite;
         }
@@ -44,9 +40,7 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             50% { opacity: 1; transform: scale(1); }
         }
         .main-container {
-            text-align: center;
-            z-index: 10;
-            position: relative;
+            text-align: center; z-index: 10; position: relative;
         }
         .card {
             background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,100,150,0.08));
@@ -67,7 +61,6 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             font-size: 80px;
             animation: heartBeat 1.2s ease-in-out infinite;
             display: inline-block;
-            filter: drop-shadow(0 0 20px rgba(255,50,100,0.6));
         }
         @keyframes heartBeat {
             0%, 100% { transform: scale(1); }
@@ -76,22 +69,17 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             45% { transform: scale(1.1); }
             60% { transform: scale(1); }
         }
-        .names-section { margin: 20px 0; }
         .name-abhishek {
-            font-family: 'Great Vibes', cursive;
-            font-size: 36px;
-            color: #ff6b9d;
-            text-shadow: 0 0 20px rgba(255,107,157,0.5);
+            font-family: Great Vibes, cursive;
+            font-size: 36px; color: #ff6b9d;
         }
         .heart-connector {
-            font-size: 30px;
-            color: #ff4081;
-            margin: 5px 0;
+            font-size: 30px; color: #ff4081; margin: 5px 0;
             animation: heartBeat 1.2s ease-in-out infinite;
             display: inline-block;
         }
         .name-kajal {
-            font-family: 'Great Vibes', cursive;
+            font-family: Great Vibes, cursive;
             font-size: 48px;
             background: linear-gradient(45deg, #ff6b9d, #ff4081, #ff69b4, #ff1493);
             background-size: 300% 300%;
@@ -104,139 +92,86 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             50% { background-position: 100% 50%; }
         }
         .son-section {
-            margin-top: 10px;
-            color: rgba(255,200,220,0.8);
-            font-size: 14px;
+            margin-top: 10px; color: rgba(255,200,220,0.8); font-size: 14px;
         }
         .name-shivaay {
-            font-family: 'Dancing Script', cursive;
-            font-size: 26px;
-            color: #ffb6c1;
-            text-shadow: 0 0 15px rgba(255,182,193,0.5);
+            font-family: Dancing Script, cursive;
+            font-size: 26px; color: #ffb6c1;
         }
         .question {
-            font-family: 'Dancing Script', cursive;
-            font-size: 32px;
-            color: #fff;
-            margin: 30px 0 10px;
-            text-shadow: 0 0 20px rgba(255,255,255,0.3);
-            line-height: 1.4;
+            font-family: Dancing Script, cursive;
+            font-size: 32px; color: #fff;
+            margin: 30px 0 10px; line-height: 1.4;
         }
         .question-sub {
-            font-size: 14px;
-            color: rgba(255,200,220,0.7);
-            margin-bottom: 30px;
-        }
-        .buttons-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
-            align-items: center;
+            font-size: 14px; color: rgba(255,200,220,0.7); margin-bottom: 30px;
         }
         .btn-yes {
-            padding: 16px 55px;
-            font-size: 22px;
-            font-family: 'Dancing Script', cursive;
-            font-weight: 700;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
+            padding: 16px 55px; font-size: 22px;
+            font-family: Dancing Script, cursive; font-weight: 700;
+            border: none; border-radius: 50px; cursor: pointer;
             background: linear-gradient(45deg, #ff4081, #ff6b9d, #ff1493);
-            background-size: 200% 200%;
             color: white;
             box-shadow: 0 0 30px rgba(255,64,129,0.4);
-            transition: all 0.3s ease;
-            animation: gradient 2s ease infinite, yesGlow 2s ease-in-out infinite;
+            animation: yesGlow 2s ease-in-out infinite;
             z-index: 5;
         }
         @keyframes yesGlow {
             0%, 100% { box-shadow: 0 0 30px rgba(255,64,129,0.4); }
             50% { box-shadow: 0 0 50px rgba(255,64,129,0.6), 0 0 80px rgba(255,64,129,0.3); }
         }
-        .btn-yes:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 50px rgba(255,64,129,0.6);
-        }
+        .btn-yes:hover { transform: scale(1.1); }
 
-        /* NO BUTTON */
         .btn-no {
-            padding: 16px 55px;
-            font-size: 22px;
-            font-family: 'Dancing Script', cursive;
-            font-weight: 700;
-            border: 2px solid #ff6b9d;
-            border-radius: 50px;
+            padding: 16px 55px; font-size: 22px;
+            font-family: Dancing Script, cursive; font-weight: 700;
+            border: 3px solid #ff6b9d; border-radius: 50px;
             cursor: pointer;
-            background: rgba(255, 64, 129, 0.2);
-            color: #ff9dc4;
+            background: rgba(255, 50, 100, 0.25);
+            color: #ffb6c1;
             position: fixed;
-            z-index: 9999;
-            user-select: none;
-            box-shadow: 0 0 25px rgba(255,64,129,0.4);
-            transition: left 0.8s ease-in-out, top 0.8s ease-in-out;
-            white-space: nowrap;
-        }
-
-        .btn-no.fast {
-            transition: left 0.15s ease, top 0.15s ease;
+            z-index: 99999;
+            box-shadow: 0 0 30px rgba(255,64,129,0.5);
         }
 
         .no-attempts {
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            color: #ff9dc4;
-            margin-top: 20px;
-            min-height: 25px;
-            font-weight: 600;
+            font-family: Poppins, sans-serif;
+            font-size: 15px; color: #ff9dc4;
+            margin-top: 20px; min-height: 25px; font-weight: 600;
         }
 
-        /* SUCCESS */
         .success-screen { display: none; text-align: center; }
         .success-screen .big-heart { font-size: 100px; }
         .success-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 52px;
+            font-family: Great Vibes, cursive; font-size: 52px;
             background: linear-gradient(45deg, #ff6b9d, #ff4081, #ff69b4, #ffb6c1);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradient 2s ease infinite;
-            margin: 20px 0;
+            animation: gradient 2s ease infinite; margin: 20px 0;
         }
         .success-message {
-            font-family: 'Dancing Script', cursive;
-            font-size: 28px;
-            color: #ffb6c1;
-            margin: 15px 0;
-            line-height: 1.5;
+            font-family: Dancing Script, cursive;
+            font-size: 28px; color: #ffb6c1; margin: 15px 0; line-height: 1.5;
         }
-        .success-sub {
-            font-size: 16px;
-            color: rgba(255,200,220,0.7);
-            margin: 10px 0;
-        }
+        .success-sub { font-size: 16px; color: rgba(255,200,220,0.7); margin: 10px 0; }
         .family-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: 32px;
-            color: #ff6b9d;
-            margin-top: 20px;
-            text-shadow: 0 0 20px rgba(255,107,157,0.5);
+            font-family: Great Vibes, cursive; font-size: 32px;
+            color: #ff6b9d; margin-top: 20px;
         }
         .family-names span { color: #ff4081; }
-
         .flying-heart { position: fixed; pointer-events: none; z-index: 100; }
         @keyframes flyUp {
             0% { opacity:1; transform: translateY(0) scale(1) rotate(0deg); }
             100% { opacity:0; transform: translateY(-100vh) scale(0.5) rotate(360deg); }
         }
         @keyframes flyDiag1 {
-            0% { opacity:1; transform: translate(0,0) scale(1) rotate(0deg); }
-            100% { opacity:0; transform: translate(200px,-100vh) scale(0.3) rotate(720deg); }
+            0% { opacity:1; transform: translate(0,0) scale(1); }
+            100% { opacity:0; transform: translate(200px,-100vh) scale(0.3); }
         }
         @keyframes flyDiag2 {
-            0% { opacity:1; transform: translate(0,0) scale(1) rotate(0deg); }
-            100% { opacity:0; transform: translate(-200px,-100vh) scale(0.3) rotate(-720deg); }
+            0% { opacity:1; transform: translate(0,0) scale(1); }
+            100% { opacity:0; transform: translate(-200px,-100vh) scale(0.3); }
         }
         @keyframes popIn {
             0% { transform: scale(0); opacity:0; }
@@ -244,32 +179,24 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
             100% { transform: scale(1); opacity:1; }
         }
         .pop-in { animation: popIn 0.8s ease forwards; }
-
         .confetti { position: fixed; pointer-events: none; z-index: 99; }
         @keyframes confettiFall {
             0% { opacity:1; transform: translateY(-10vh) rotate(0deg); }
             100% { opacity:0; transform: translateY(110vh) rotate(720deg); }
         }
-
         .petal {
-            position: fixed;
-            width: 15px; height: 15px;
+            position: fixed; width: 15px; height: 15px;
             background: radial-gradient(circle, #ff6b9d, #ff4081);
             border-radius: 50% 0 50% 50%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.3;
+            pointer-events: none; z-index: 0; opacity: 0.3;
         }
         @keyframes petalFall {
-            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity:0.4; }
-            25% { transform: translateY(25vh) rotate(90deg) translateX(30px); }
+            0% { transform: translateY(-10vh) rotate(0deg); opacity:0.4; }
             50% { transform: translateY(50vh) rotate(180deg) translateX(-20px); }
-            75% { transform: translateY(75vh) rotate(270deg) translateX(25px); }
-            100% { transform: translateY(110vh) rotate(360deg) translateX(-10px); opacity:0; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
         }
         .envelope-icon {
-            font-size: 40px;
-            margin-bottom: 10px;
+            font-size: 40px; margin-bottom: 10px;
             animation: floatE 3s ease-in-out infinite;
         }
         @keyframes floatE {
@@ -289,6 +216,7 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
     </style>
 </head>
 <body>
+
     <div class="main-container">
         <div class="card" id="questionCard">
             <div class="envelope-icon">💌</div>
@@ -298,17 +226,18 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
                 <div class="heart-connector">❤️</div>
                 <div class="name-kajal">Kajal</div>
                 <div class="son-section">
-                    & our little star 🌟 <br>
+                    & our little star 🌟<br>
                     <span class="name-shivaay">Shivaay</span> 👶
                 </div>
             </div>
             <div class="question">My Dearest Kajal,<br>Will You Be My Valentine? 💕</div>
             <div class="question-sub">~ From your loving husband, Abhishek 💝</div>
-            <div class="buttons-container" id="buttonsContainer">
+            <div>
                 <button class="btn-yes" id="btnYes" onclick="sayYes()">💖 Yes! 💖</button>
             </div>
             <div class="no-attempts" id="noAttempts"></div>
         </div>
+
         <div class="success-screen" id="successScreen">
             <div class="card">
                 <div class="big-heart pop-in">💖</div>
@@ -323,266 +252,261 @@ cat > ~/Desktop/index.html << 'ENDOFFILE'
         </div>
     </div>
 
-    <!-- NO BUTTON lives outside the card so it can move freely -->
     <button class="btn-no" id="btnNo">No 😢</button>
 
 <script>
-// Background Hearts
-(function(){
-    var h=['💖','💕','💗','💓','💝','💘','❤️','♥️'];
-    for(var i=0;i<20;i++){
-        var d=document.createElement('div');
-        d.className='bg-heart';
-        d.textContent=h[Math.floor(Math.random()*h.length)];
-        d.style.left=Math.random()*100+'vw';
-        d.style.fontSize=(Math.random()*25+10)+'px';
-        d.style.animationDuration=(Math.random()*10+8)+'s';
-        d.style.animationDelay=(Math.random()*10)+'s';
-        document.body.appendChild(d);
-    }
-})();
+var i;
 
-// Sparkles
-(function(){
-    for(var i=0;i<30;i++){
-        var s=document.createElement('div');
-        s.className='sparkle';
-        s.style.left=Math.random()*100+'vw';
-        s.style.top=Math.random()*100+'vh';
-        s.style.animationDelay=(Math.random()*3)+'s';
-        s.style.animationDuration=(Math.random()*2+1)+'s';
-        document.body.appendChild(s);
-    }
-})();
+for(i = 0; i < 15; i++){
+    var bh = document.createElement("div");
+    bh.className = "bg-heart";
+    bh.innerHTML = ["💖","💕","💗","💓","💝"][Math.floor(Math.random()*5)];
+    bh.style.left = Math.random()*100 + "vw";
+    bh.style.fontSize = (Math.random()*25+10) + "px";
+    bh.style.animationDuration = (Math.random()*10+8) + "s";
+    bh.style.animationDelay = (Math.random()*10) + "s";
+    document.body.appendChild(bh);
+}
 
-// Petals
+for(i = 0; i < 25; i++){
+    var sp = document.createElement("div");
+    sp.className = "sparkle";
+    sp.style.left = Math.random()*100 + "vw";
+    sp.style.top = Math.random()*100 + "vh";
+    sp.style.animationDelay = (Math.random()*3) + "s";
+    document.body.appendChild(sp);
+}
+
 setInterval(function(){
-    var p=document.createElement('div');
-    p.className='petal';
-    p.style.left=Math.random()*100+'vw';
-    p.style.animation='petalFall '+(Math.random()*5+5)+'s linear forwards';
-    p.style.width=(Math.random()*10+8)+'px';
-    p.style.height=(Math.random()*10+8)+'px';
-    document.body.appendChild(p);
-    setTimeout(function(){p.remove();},10000);
-},800);
+    var pt = document.createElement("div");
+    pt.className = "petal";
+    pt.style.left = Math.random()*100 + "vw";
+    pt.style.animation = "petalFall " + (Math.random()*5+5) + "s linear forwards";
+    document.body.appendChild(pt);
+    setTimeout(function(){ pt.remove(); }, 10000);
+}, 900);
 
 
-// ============================================
-//  NO BUTTON - ALWAYS MOVING & ALWAYS VISIBLE
-// ============================================
+/* ==========================================
+   NO BUTTON - ALWAYS VISIBLE, ALWAYS MOVING
+   ========================================== */
 
-var btnNo = document.getElementById('btnNo');
-var noAttempts = document.getElementById('noAttempts');
-var attempts = 0;
-var noStopped = false;
-var currentX = 0;
-var currentY = 0;
-var targetX = 0;
-var targetY = 0;
-var moveSpeed = 0.02; // smooth movement speed
-var btnW = 155;
-var btnH = 55;
-var safeMargin = 15;
-var autoMoveInterval;
-var isFleeing = false;
+var btnNo = document.getElementById("btnNo");
+var noMsg = document.getElementById("noAttempts");
+var tries = 0;
+var dead = false;
 
-var msgs = [
-    "Haha! Nice try Kajal! 😜",
-    "Nope! Not an option! 😂",
-    "No button is scared of you! 🏃‍♂️",
+/* Button size */
+var BW = 160;
+var BH = 56;
+var PAD = 20;
+
+/* Current position */
+var posX = 100;
+var posY = 100;
+
+/* Velocity - button moves on its own */
+var velX = 2;
+var velY = 2;
+
+/* Speed */
+var speed = 2;
+
+var messages = [
+    "Haha nice try Kajal! 😜",
+    "Nope! Not happening! 😂",
+    "No button is running away! 🏃‍♂️",
     "Abhishek wont allow No! 💪❤️",
-    "Shivaay says: Mumma say Yes! 🥺👶",
+    "Shivaay says Mumma say Yes! 🥺👶",
     "Button knows answer is Yes! 😄",
-    "Stop chasing No! Yes is waiting! 💖",
-    "No button says: Catch me if you can! 😂",
-    "You cant catch me! ~ No Button 🏃",
-    "Just click Yes already Kajal! 😘",
-    "Abhishek and Shivaay are waiting! 🥰",
+    "Stop chasing No button! 💖",
+    "Catch me if you can! 😂",
+    "I am too fast for you! 🏃",
+    "Just click Yes Kajal! 😘",
+    "Abhishek and Shivaay waiting! 🥰",
     "Universe wants you to say Yes! ✨",
-    "No is not your destiny! 😄💕",
-    "Give up chasing me! Say Yes! 💝",
-    "I am too fast for you Kajal! 😂🏃",
-    "This button has a mind of its own! 🤪"
+    "No is not your destiny! 💕",
+    "Give up and say Yes! 💝",
+    "This button has its own mind! 🤪",
+    "You will never catch me! 😂"
 ];
 
-// Get safe position within screen
-function getSafePosition() {
-    var vw = window.innerWidth;
-    var vh = window.innerHeight;
-    var x = safeMargin + Math.random() * (vw - btnW - safeMargin * 2);
-    var y = safeMargin + Math.random() * (vh - btnH - safeMargin * 2);
-    return { x: x, y: y };
-}
+/* Place button at starting position */
+posX = window.innerWidth - BW - 50;
+posY = window.innerHeight / 2;
+btnNo.style.left = posX + "px";
+btnNo.style.top = posY + "px";
 
-// Clamp position to screen
-function clamp(val, min, max) {
-    return Math.max(min, Math.min(max, val));
-}
+/* ---- MAIN ANIMATION LOOP ---- */
+/* The No button BOUNCES around the screen like a DVD screensaver */
+/* It continuously moves and bounces off walls */
 
-// Set initial position
-var initPos = getSafePosition();
-currentX = initPos.x;
-currentY = initPos.y;
-targetX = currentX;
-targetY = currentY;
-btnNo.style.left = currentX + 'px';
-btnNo.style.top = currentY + 'px';
+function moveButton() {
+    if (dead) return;
 
-// Pick new random target every 1.5 seconds (auto roaming)
-function pickNewTarget() {
-    if (isFleeing) return;
-    var pos = getSafePosition();
-    targetX = pos.x;
-    targetY = pos.y;
-}
+    var maxX = window.innerWidth - BW - PAD;
+    var maxY = window.innerHeight - BH - PAD;
 
-autoMoveInterval = setInterval(pickNewTarget, 1500);
+    /* Move */
+    posX = posX + velX;
+    posY = posY + velY;
 
-// Smooth animation loop - button glides toward target
-function animateButton() {
-    if (noStopped) return;
-
-    var vw = window.innerWidth;
-    var vh = window.innerHeight;
-
-    // Move toward target smoothly
-    var speed = isFleeing ? 0.15 : 0.03;
-    currentX += (targetX - currentX) * speed;
-    currentY += (targetY - currentY) * speed;
-
-    // Clamp within screen
-    currentX = clamp(currentX, safeMargin, vw - btnW - safeMargin);
-    currentY = clamp(currentY, safeMargin, vh - btnH - safeMargin);
-
-    btnNo.style.left = currentX + 'px';
-    btnNo.style.top = currentY + 'px';
-
-    // If fleeing and reached target, go back to normal
-    if (isFleeing) {
-        var dist = Math.sqrt(Math.pow(targetX - currentX, 2) + Math.pow(targetY - currentY, 2));
-        if (dist < 5) {
-            isFleeing = false;
-        }
+    /* Bounce off LEFT wall */
+    if (posX <= PAD) {
+        posX = PAD;
+        velX = Math.abs(velX);
     }
 
-    requestAnimationFrame(animateButton);
+    /* Bounce off RIGHT wall */
+    if (posX >= maxX) {
+        posX = maxX;
+        velX = -Math.abs(velX);
+    }
+
+    /* Bounce off TOP wall */
+    if (posY <= PAD) {
+        posY = PAD;
+        velY = Math.abs(velY);
+    }
+
+    /* Bounce off BOTTOM wall */
+    if (posY >= maxY) {
+        posY = maxY;
+        velY = -Math.abs(velY);
+    }
+
+    /* Apply position */
+    btnNo.style.left = posX + "px";
+    btnNo.style.top = posY + "px";
+
+    requestAnimationFrame(moveButton);
 }
-requestAnimationFrame(animateButton);
 
-// FLEE - when mouse/touch gets near
-function fleeFrom(mouseX, mouseY) {
-    var vw = window.innerWidth;
-    var vh = window.innerHeight;
+/* Start the animation */
+requestAnimationFrame(moveButton);
 
-    // Calculate direction away from mouse
-    var btnCenterX = currentX + btnW / 2;
-    var btnCenterY = currentY + btnH / 2;
 
-    var dx = btnCenterX - mouseX;
-    var dy = btnCenterY - mouseY;
+/* ---- WHEN MOUSE GETS NEAR - RUN FASTER ---- */
+document.addEventListener("mousemove", function(e) {
+    if (dead) return;
+
+    var cx = posX + BW / 2;
+    var cy = posY + BH / 2;
+    var dx = e.clientX - cx;
+    var dy = e.clientY - cy;
     var dist = Math.sqrt(dx * dx + dy * dy);
 
-    if (dist === 0) { dx = 1; dy = 1; dist = 1.414; }
+    /* If mouse within 150px of button */
+    if (dist < 150) {
+        /* Run AWAY from mouse */
+        var awayX = -dx;
+        var awayY = -dy;
+        var len = Math.sqrt(awayX * awayX + awayY * awayY);
 
-    // Normalize and multiply by flee distance
-    var fleeDist = 200 + Math.random() * 200;
-    var newX = currentX + (dx / dist) * fleeDist;
-    var newY = currentY + (dy / dist) * fleeDist;
+        if (len > 0) {
+            velX = (awayX / len) * 8;
+            velY = (awayY / len) * 8;
+        }
 
-    // Add some randomness
-    newX += (Math.random() - 0.5) * 150;
-    newY += (Math.random() - 0.5) * 150;
+        tries++;
+        noMsg.textContent = messages[tries % messages.length];
 
-    // Clamp within screen
-    newX = clamp(newX, safeMargin, vw - btnW - safeMargin);
-    newY = clamp(newY, safeMargin, vh - btnH - safeMargin);
-
-    // If still too close (cornered), jump to opposite side
-    var newDist = Math.sqrt(Math.pow(newX - mouseX, 2) + Math.pow(newY - mouseY, 2));
-    if (newDist < 150) {
-        newX = mouseX < vw / 2 ? vw - btnW - safeMargin - Math.random() * 100 : safeMargin + Math.random() * 100;
-        newY = mouseY < vh / 2 ? vh - btnH - safeMargin - Math.random() * 100 : safeMargin + Math.random() * 100;
-    }
-
-    targetX = clamp(newX, safeMargin, vw - btnW - safeMargin);
-    targetY = clamp(newY, safeMargin, vh - btnH - safeMargin);
-    isFleeing = true;
-
-    attempts++;
-    noAttempts.textContent = msgs[attempts % msgs.length];
-
-    // Make Yes button bigger over time
-    if (attempts > 2) {
-        var yesBtn = document.getElementById('btnYes');
-        var newSize = Math.min(1 + attempts * 0.03, 1.4);
-        yesBtn.style.transform = 'scale(' + newSize + ')';
-    }
-}
-
-// Mouse enters the No button
-btnNo.addEventListener('mouseenter', function(e) {
-    fleeFrom(e.clientX, e.clientY);
-});
-
-// Mouse moves near the No button (extra protection)
-document.addEventListener('mousemove', function(e) {
-    var btnRect = btnNo.getBoundingClientRect();
-    var btnCenterX = btnRect.left + btnRect.width / 2;
-    var btnCenterY = btnRect.top + btnRect.height / 2;
-    var dist = Math.sqrt(Math.pow(e.clientX - btnCenterX, 2) + Math.pow(e.clientY - btnCenterY, 2));
-
-    // If mouse within 80px of button center, flee!
-    if (dist < 80) {
-        fleeFrom(e.clientX, e.clientY);
+        /* Make Yes bigger */
+        if (tries > 2) {
+            var yb = document.getElementById("btnYes");
+            var ns = Math.min(1 + tries * 0.03, 1.4);
+            yb.style.transform = "scale(" + ns + ")";
+        }
     }
 });
 
-// Touch (mobile)
-btnNo.addEventListener('touchstart', function(e) {
+/* Touch support for mobile */
+document.addEventListener("touchmove", function(e) {
+    if (dead) return;
+    var t = e.touches[0];
+
+    var cx = posX + BW / 2;
+    var cy = posY + BH / 2;
+    var dx = t.clientX - cx;
+    var dy = t.clientY - cy;
+    var dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist < 150) {
+        var awayX = -dx;
+        var awayY = -dy;
+        var len = Math.sqrt(awayX * awayX + awayY * awayY);
+
+        if (len > 0) {
+            velX = (awayX / len) * 8;
+            velY = (awayY / len) * 8;
+        }
+
+        tries++;
+        noMsg.textContent = messages[tries % messages.length];
+    }
+});
+
+/* Prevent click on No */
+btnNo.addEventListener("mouseenter", function(e) {
+    var awayX = -(e.clientX - (posX + BW/2));
+    var awayY = -(e.clientY - (posY + BH/2));
+    var len = Math.sqrt(awayX * awayX + awayY * awayY);
+    if (len > 0) {
+        velX = (awayX / len) * 10;
+        velY = (awayY / len) * 10;
+    }
+    tries++;
+    noMsg.textContent = messages[tries % messages.length];
+});
+
+btnNo.addEventListener("click", function(e) {
     e.preventDefault();
-    var touch = e.touches[0];
-    fleeFrom(touch.clientX, touch.clientY);
-});
-
-// Touch move near button (mobile)
-document.addEventListener('touchmove', function(e) {
-    var touch = e.touches[0];
-    var btnRect = btnNo.getBoundingClientRect();
-    var btnCenterX = btnRect.left + btnRect.width / 2;
-    var btnCenterY = btnRect.top + btnRect.height / 2;
-    var dist = Math.sqrt(Math.pow(touch.clientX - btnCenterX, 2) + Math.pow(touch.clientY - btnCenterY, 2));
-
-    if (dist < 100) {
-        fleeFrom(touch.clientX, touch.clientY);
-    }
-});
-
-// Click prevention
-btnNo.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    fleeFrom(e.clientX, e.clientY);
+    velX = (Math.random() > 0.5 ? 1 : -1) * 10;
+    velY = (Math.random() > 0.5 ? 1 : -1) * 10;
+    tries++;
+    noMsg.textContent = messages[tries % messages.length];
     return false;
 });
 
-// Handle window resize
-window.addEventListener('resize', function() {
-    var vw = window.innerWidth;
-    var vh = window.innerHeight;
-    currentX = clamp(currentX, safeMargin, vw - btnW - safeMargin);
-    currentY = clamp(currentY, safeMargin, vh - btnH - safeMargin);
-    targetX = clamp(targetX, safeMargin, vw - btnW - safeMargin);
-    targetY = clamp(targetY, safeMargin, vh - btnH - safeMargin);
+btnNo.addEventListener("touchstart", function(e) {
+    e.preventDefault();
+    velX = (Math.random() > 0.5 ? 1 : -1) * 10;
+    velY = (Math.random() > 0.5 ? 1 : -1) * 10;
+    tries++;
+    noMsg.textContent = messages[tries % messages.length];
 });
 
+/* Gradually slow down back to normal speed */
+setInterval(function() {
+    if (dead) return;
+    var currentSpeed = Math.sqrt(velX * velX + velY * velY);
+    if (currentSpeed > speed) {
+        velX = velX * 0.95;
+        velY = velY * 0.95;
+    }
+    /* Make sure it keeps minimum speed */
+    if (currentSpeed < speed) {
+        var angle = Math.atan2(velY, velX);
+        velX = Math.cos(angle) * speed;
+        velY = Math.sin(angle) * speed;
+    }
+    /* Add slight random direction change */
+    if (Math.random() < 0.1) {
+        velX = velX + (Math.random() - 0.5) * 1;
+        velY = velY + (Math.random() - 0.5) * 1;
+    }
+}, 200);
 
-// ============ YES BUTTON ============
+
+/* ==========================================
+   YES BUTTON
+   ========================================== */
+
 function sayYes() {
-    noStopped = true;
-    document.getElementById('questionCard').style.display = 'none';
-    btnNo.style.display = 'none';
-    document.getElementById('successScreen').style.display = 'block';
+    dead = true;
+    document.getElementById("questionCard").style.display = "none";
+    btnNo.style.display = "none";
+    document.getElementById("successScreen").style.display = "block";
     launchHearts();
     launchConfetti();
     setInterval(launchHearts, 3000);
@@ -590,47 +514,45 @@ function sayYes() {
 }
 
 function launchHearts() {
-    var h = ['💖','💕','💗','💓','💝','💘','❤️','💞','🌹','🥰','😍'];
-    var a = ['flyUp','flyDiag1','flyDiag2'];
-    for (var i = 0; i < 50; i++) {
-        (function(i) {
+    var h = ["💖","💕","💗","💓","💝","💘","❤️","💞","🌹","🥰","😍"];
+    var a = ["flyUp","flyDiag1","flyDiag2"];
+    for (var j = 0; j < 50; j++) {
+        (function(j) {
             setTimeout(function() {
-                var d = document.createElement('div');
-                d.className = 'flying-heart';
+                var d = document.createElement("div");
+                d.className = "flying-heart";
                 d.textContent = h[Math.floor(Math.random() * h.length)];
-                d.style.left = Math.random() * 100 + 'vw';
-                d.style.top = (50 + Math.random() * 50) + 'vh';
-                d.style.fontSize = (Math.random() * 30 + 15) + 'px';
-                var an = a[Math.floor(Math.random() * a.length)];
-                d.style.animation = an + ' ' + (Math.random()*3+2) + 's ease-out forwards';
+                d.style.left = Math.random() * 100 + "vw";
+                d.style.top = (50 + Math.random() * 50) + "vh";
+                d.style.fontSize = (Math.random() * 30 + 15) + "px";
+                d.style.animation = a[Math.floor(Math.random()*a.length)] + " " + (Math.random()*3+2) + "s ease-out forwards";
                 document.body.appendChild(d);
                 setTimeout(function() { d.remove(); }, 5000);
-            }, i * 60);
-        })(i);
+            }, j * 60);
+        })(j);
     }
 }
 
 function launchConfetti() {
-    var c = ['#ff4081','#ff6b9d','#ffb6c1','#ff69b4','#ff1493','#ffd700','#ff6347','#ff85a2'];
-    for (var i = 0; i < 40; i++) {
-        (function(i) {
+    var c = ["#ff4081","#ff6b9d","#ffb6c1","#ff69b4","#ff1493","#ffd700","#ff6347"];
+    for (var j = 0; j < 40; j++) {
+        (function(j) {
             setTimeout(function() {
-                var d = document.createElement('div');
-                d.className = 'confetti';
+                var d = document.createElement("div");
+                d.className = "confetti";
                 var sz = Math.random() * 10 + 5;
-                d.style.width = sz + 'px';
-                d.style.height = sz + 'px';
+                d.style.width = sz + "px";
+                d.style.height = sz + "px";
                 d.style.background = c[Math.floor(Math.random() * c.length)];
-                d.style.left = Math.random() * 100 + 'vw';
-                d.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-                d.style.animation = 'confettiFall ' + (Math.random()*3+2) + 's linear forwards';
+                d.style.left = Math.random() * 100 + "vw";
+                d.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+                d.style.animation = "confettiFall " + (Math.random()*3+2) + "s linear forwards";
                 document.body.appendChild(d);
                 setTimeout(function() { d.remove(); }, 5000);
-            }, i * 80);
-        })(i);
+            }, j * 80);
+        })(j);
     }
 }
 </script>
 </body>
 </html>
-ENDOFFILE
