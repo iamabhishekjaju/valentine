@@ -1,3 +1,4 @@
+cat > index.html << 'EOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,8 +85,6 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-
-        /* SCREEN 1: WELCOME */
         #welcomeScreen .card { padding: 60px 50px; }
         .welcome-heart {
             font-size: 100px;
@@ -128,8 +127,6 @@
         .begin-note {
             font-size: 13px; color: rgba(255,200,220,0.5); margin-top: 18px;
         }
-
-        /* SCREEN 2: QUESTION */
         #questionCard { display: none; }
         .big-heart {
             font-size: 80px;
@@ -194,8 +191,6 @@
             box-shadow: 0 0 30px rgba(255,64,129,0.5);
             display: none;
         }
-
-        /* NOW PLAYING SMALL */
         .np-indicator {
             display: none;
             align-items: center; gap: 8px;
@@ -203,8 +198,7 @@
             border: 1px solid rgba(255,100,150,0.2);
             border-radius: 30px;
             padding: 8px 20px;
-            margin: 15px auto;
-            width: fit-content;
+            margin: 15px auto; width: fit-content;
         }
         .np-bars-small {
             display: flex; gap: 2px; align-items: flex-end; height: 14px;
@@ -230,8 +224,6 @@
             font-family: Dancing Script, cursive;
             font-size: 16px; color: #ff9dc4; font-weight: 700;
         }
-
-        /* SCREEN 3: SUCCESS */
         #successScreen { display: none; text-align: center; }
         #successScreen .card { max-width: 700px; padding: 40px 40px; }
         .success-title {
@@ -249,8 +241,6 @@
         .success-sub {
             font-size: 16px; color: rgba(255,200,220,0.7); margin: 10px 0;
         }
-
-        /* LETTER */
         .letter-section {
             margin: 30px 0;
             background: rgba(255, 50, 100, 0.05);
@@ -295,8 +285,6 @@
             color: #ff6b9d; margin-top: 25px;
         }
         .family-names span { color: #ff4081; }
-
-        /* ANIMATIONS */
         .flying-heart { position: fixed; pointer-events: none; z-index: 100; }
         @keyframes flyUp {
             0% { opacity:1; transform: translateY(0) scale(1) rotate(0deg); }
@@ -326,20 +314,6 @@
             100% { opacity: 1; transform: translateY(0); }
         }
         .letter-fade { animation: letterFadeIn 1s ease forwards; opacity: 0; }
-
-        /* HIDDEN YOUTUBE - Audio only, no video visible */
-        .hidden-player {
-            position: fixed;
-            bottom: -500px;
-            left: -500px;
-            width: 1px;
-            height: 1px;
-            opacity: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* NOW PLAYING BAR BOTTOM */
         .now-playing-bar {
             position: fixed;
             bottom: 0; left: 0; right: 0;
@@ -372,7 +346,6 @@
             font-family: Dancing Script, cursive;
             font-size: 15px; color: #ff9dc4; font-weight: 700;
         }
-
         @media (max-width: 600px) {
             .card { padding: 30px 20px; }
             #welcomeScreen .card { padding: 40px 25px; }
@@ -394,31 +367,20 @@
     </style>
 </head>
 <body>
-
-    <!-- HIDDEN YOUTUBE PLAYER - AUDIO ONLY (No video shown) -->
-    <div class="hidden-player">
-        <iframe id="ytPlayer" width="1" height="1" frameborder="0" allow="autoplay"></iframe>
-    </div>
-
+    <audio id="bgMusic" loop preload="auto">
+        <source src="saiyaara.mp3" type="audio/mpeg">
+    </audio>
     <div class="main-container" id="mainContainer">
-
-        <!-- ========== SCREEN 1: TAP TO OPEN ========== -->
         <div id="welcomeScreen">
             <div class="card">
                 <div class="welcome-heart">💌</div>
                 <div class="welcome-title">Something Special</div>
                 <div class="welcome-sub">is waiting for you...</div>
                 <div class="welcome-for">Kajal</div>
-                <div>
-                    <button class="begin-btn" id="beginBtn">
-                        💕 Tap To Open 💕
-                    </button>
-                </div>
+                <div><button class="begin-btn" id="beginBtn">💕 Tap To Open 💕</button></div>
                 <div class="begin-note">🔊 Please turn your volume up 🔊</div>
             </div>
         </div>
-
-        <!-- ========== SCREEN 2: VALENTINE QUESTION ========== -->
         <div class="card" id="questionCard">
             <div style="font-size:40px; margin-bottom:10px; animation: floatE 3s ease-in-out infinite; display:inline-block;">💌</div>
             <div class="big-heart">💖</div>
@@ -426,55 +388,29 @@
                 <div class="name-abhishek">Abhishek</div>
                 <div class="heart-connector">❤️</div>
                 <div class="name-kajal">Kajal</div>
-                <div class="son-section">
-                    & our little star 🌟<br>
-                    <span class="name-shivaay">Shivaay</span> 👶
-                </div>
+                <div class="son-section">& our little star 🌟<br><span class="name-shivaay">Shivaay</span> 👶</div>
             </div>
             <div class="question">My Dearest Kajal,<br>Will You Be My Valentine? 💕</div>
             <div class="question-sub">~ From your loving husband, Abhishek 💝</div>
             <div class="np-indicator" id="npSmall">
-                <div class="np-bars-small">
-                    <div class="np-sbar"></div>
-                    <div class="np-sbar"></div>
-                    <div class="np-sbar"></div>
-                    <div class="np-sbar"></div>
-                    <div class="np-sbar"></div>
-                </div>
+                <div class="np-bars-small"><div class="np-sbar"></div><div class="np-sbar"></div><div class="np-sbar"></div><div class="np-sbar"></div><div class="np-sbar"></div></div>
                 <div class="np-label">Playing:</div>
                 <div class="np-song-name">Saiyaara 🎵</div>
             </div>
-            <div style="margin-top:20px;">
-                <button class="btn-yes" id="btnYes">💖 Yes! 💖</button>
-            </div>
+            <div style="margin-top:20px;"><button class="btn-yes" id="btnYes">💖 Yes! 💖</button></div>
             <div class="no-attempts" id="noAttempts"></div>
         </div>
-
-        <!-- ========== SCREEN 3: SUCCESS ========== -->
         <div id="successScreen">
             <div class="card">
                 <div class="big-heart pop-in" style="font-size:100px;">💖</div>
                 <div class="success-title pop-in" style="animation-delay:0.3s">Yaaay!</div>
-                <div class="success-message pop-in" style="animation-delay:0.5s">
-                    I knew you would say Yes! 🥰<br>
-                    You make my world beautiful, Kajal! 🌹
-                </div>
-                <div class="success-sub pop-in" style="animation-delay:0.7s">
-                    Together forever with our little Shivaay 👨‍👩‍👦
-                </div>
-
+                <div class="success-message pop-in" style="animation-delay:0.5s">I knew you would say Yes! 🥰<br>You make my world beautiful, Kajal! 🌹</div>
+                <div class="success-sub pop-in" style="animation-delay:0.7s">Together forever with our little Shivaay 👨‍👩‍👦</div>
                 <div class="np-indicator pop-in" style="animation-delay:0.9s; display:inline-flex;">
-                    <div class="np-bars-small">
-                        <div class="np-sbar"></div>
-                        <div class="np-sbar"></div>
-                        <div class="np-sbar"></div>
-                        <div class="np-sbar"></div>
-                        <div class="np-sbar"></div>
-                    </div>
+                    <div class="np-bars-small"><div class="np-sbar"></div><div class="np-sbar"></div><div class="np-sbar"></div><div class="np-sbar"></div><div class="np-sbar"></div></div>
                     <div class="np-label">Playing:</div>
                     <div class="np-song-name">Saiyaara 🎵</div>
                 </div>
-
                 <div class="letter-section letter-fade" style="animation-delay:1.5s">
                     <div class="letter-header">💌 A Letter For You, My Kajal 💌</div>
                     <div class="letter-body">
@@ -485,299 +421,76 @@
                         <p>I promise to always stand by you, support your dreams, and make you feel loved and valued. Life feels more beautiful because I get to share it with you. 🌹</p>
                     </div>
                     <div class="letter-love">I love you more than words can express ❤️</div>
-                    <div class="letter-sign">
-                        Forever Yours,<br>
-                        Your Abhishek 💕<br>
-                        <span style="font-size:18px; color:rgba(255,200,220,0.6);">& little Shivaay 👶💖</span>
-                    </div>
+                    <div class="letter-sign">Forever Yours,<br>Your Abhishek 💕<br><span style="font-size:18px; color:rgba(255,200,220,0.6);">& little Shivaay 👶💖</span></div>
                 </div>
-
-                <div class="pop-in" style="animation-delay:2s;font-size:30px;margin:15px 0;">
-                    🌹💐🌹💐🌹
-                </div>
-                <div class="family-names pop-in" style="animation-delay:2.2s">
-                    Abhishek <span>❤️</span> Kajal <span>❤️</span> Shivaay
-                </div>
-                <div class="pop-in" style="animation-delay:2.4s;margin-top:15px;color:rgba(255,200,220,0.5);font-size:13px;">
-                    Made with love by your husband 💕
-                </div>
+                <div class="pop-in" style="animation-delay:2s;font-size:30px;margin:15px 0;">🌹💐🌹💐🌹</div>
+                <div class="family-names pop-in" style="animation-delay:2.2s">Abhishek <span>❤️</span> Kajal <span>❤️</span> Shivaay</div>
+                <div class="pop-in" style="animation-delay:2.4s;margin-top:15px;color:rgba(255,200,220,0.5);font-size:13px;">Made with love by your husband 💕</div>
             </div>
         </div>
     </div>
-
-    <!-- NO BUTTON -->
     <button class="btn-no" id="btnNo">No 😢</button>
-
-    <!-- NOW PLAYING BAR -->
     <div class="now-playing-bar" id="npBar">
-        <div class="npb-bars">
-            <div class="npb-bar"></div>
-            <div class="npb-bar"></div>
-            <div class="npb-bar"></div>
-            <div class="npb-bar"></div>
-            <div class="npb-bar"></div>
-        </div>
+        <div class="npb-bars"><div class="npb-bar"></div><div class="npb-bar"></div><div class="npb-bar"></div><div class="npb-bar"></div><div class="npb-bar"></div></div>
         <div class="npb-text">Now Playing</div>
-        <div class="npb-song">🎵 Saiyaara - Dunki</div>
+        <div class="npb-song">🎵 Saiyaara</div>
     </div>
-
 <script>
 var i;
-for(i = 0; i < 15; i++){
-    var bh = document.createElement("div");
-    bh.className = "bg-heart";
-    bh.innerHTML = ["💖","💕","💗","💓","💝"][Math.floor(Math.random()*5)];
-    bh.style.left = Math.random()*100 + "vw";
-    bh.style.fontSize = (Math.random()*25+10) + "px";
-    bh.style.animationDuration = (Math.random()*10+8) + "s";
-    bh.style.animationDelay = (Math.random()*10) + "s";
-    document.body.appendChild(bh);
-}
-for(i = 0; i < 25; i++){
-    var sp = document.createElement("div");
-    sp.className = "sparkle";
-    sp.style.left = Math.random()*100 + "vw";
-    sp.style.top = Math.random()*100 + "vh";
-    sp.style.animationDelay = (Math.random()*3) + "s";
-    document.body.appendChild(sp);
-}
-setInterval(function(){
-    var pt = document.createElement("div");
-    pt.className = "petal";
-    pt.style.left = Math.random()*100 + "vw";
-    pt.style.animation = "petalFall " + (Math.random()*5+5) + "s linear forwards";
-    document.body.appendChild(pt);
-    setTimeout(function(){ pt.remove(); }, 10000);
-}, 900);
-
-
-/* ===================================================
-   INITIAL STATE
-   =================================================== */
-document.getElementById("questionCard").style.display = "none";
-document.getElementById("successScreen").style.display = "none";
-document.getElementById("btnNo").style.display = "none";
-document.getElementById("npBar").style.display = "none";
-
-
-/* ===================================================
-   SCREEN 1: TAP TO OPEN -> PLAY SONG
-   =================================================== */
-
-/*
-   IMPORTANT: You need the correct YouTube video ID for
-   Saiyaara from Dunki by Tanishk Bagchi, Faheem Abdullah
-   
-   Search YouTube: "Saiyaara Dunki full song"
-   Find the video ID from the URL
-   Replace VIDEO_ID_HERE below
-   
-   Example: if YouTube URL is https://www.youtube.com/watch?v=abcd1234xyz
-   Then video ID is: abcd1234xyz
-*/
-
-var SONG_VIDEO_ID = "VjXHfIbfpYk";
-
-document.getElementById("beginBtn").addEventListener("click", function() {
-
-    /* Play song using hidden YouTube iframe */
-    var ytPlayer = document.getElementById("ytPlayer");
-    ytPlayer.src = "https://www.youtube.com/embed/" + SONG_VIDEO_ID + "?autoplay=1&loop=1&playlist=" + SONG_VIDEO_ID;
-
-    /* Show now playing */
-    document.getElementById("npBar").style.display = "flex";
-    document.getElementById("npSmall").style.display = "inline-flex";
-
-    /* Hide welcome, show question */
-    document.getElementById("welcomeScreen").style.display = "none";
-    document.getElementById("questionCard").style.display = "block";
-    document.getElementById("btnNo").style.display = "block";
-
+for(i=0;i<15;i++){var bh=document.createElement("div");bh.className="bg-heart";bh.innerHTML=["💖","💕","💗","💓","💝"][Math.floor(Math.random()*5)];bh.style.left=Math.random()*100+"vw";bh.style.fontSize=(Math.random()*25+10)+"px";bh.style.animationDuration=(Math.random()*10+8)+"s";bh.style.animationDelay=(Math.random()*10)+"s";document.body.appendChild(bh);}
+for(i=0;i<25;i++){var sp=document.createElement("div");sp.className="sparkle";sp.style.left=Math.random()*100+"vw";sp.style.top=Math.random()*100+"vh";sp.style.animationDelay=(Math.random()*3)+"s";document.body.appendChild(sp);}
+setInterval(function(){var pt=document.createElement("div");pt.className="petal";pt.style.left=Math.random()*100+"vw";pt.style.animation="petalFall "+(Math.random()*5+5)+"s linear forwards";document.body.appendChild(pt);setTimeout(function(){pt.remove();},10000);},900);
+document.getElementById("questionCard").style.display="none";
+document.getElementById("successScreen").style.display="none";
+document.getElementById("btnNo").style.display="none";
+document.getElementById("npBar").style.display="none";
+var bgMusic=document.getElementById("bgMusic");
+document.getElementById("beginBtn").addEventListener("click",function(){
+    bgMusic.volume=0.7;
+    bgMusic.play().then(function(){
+        document.getElementById("npBar").style.display="flex";
+        document.getElementById("npSmall").style.display="inline-flex";
+    }).catch(function(){
+        document.getElementById("npBar").style.display="flex";
+        document.getElementById("npSmall").style.display="inline-flex";
+    });
+    document.getElementById("welcomeScreen").style.display="none";
+    document.getElementById("questionCard").style.display="block";
+    document.getElementById("btnNo").style.display="block";
     startNoButton();
 });
-
-
-/* ===================================================
-   NO BUTTON BOUNCING
-   =================================================== */
-var btnNo = document.getElementById("btnNo");
-var noMsg = document.getElementById("noAttempts");
-var tries = 0;
-var dead = false;
-var BW = 160; var BH = 56; var PAD = 20;
-var posX = 0; var posY = 0;
-var velX = 2; var velY = 1.5;
-var normalSpeed = 2;
-var noStarted = false;
-
-var messages = [
-    "Haha nice try Kajal! 😜",
-    "Nope! Not happening! 😂",
-    "No button is running away! 🏃‍♂️",
-    "Abhishek wont allow No! 💪❤️",
-    "Shivaay says Mumma say Yes! 🥺👶",
-    "Button knows answer is Yes! 😄",
-    "Stop chasing No button! 💖",
-    "Catch me if you can! 😂",
-    "I am too fast for you! 🏃",
-    "Just click Yes Kajal! 😘",
-    "Abhishek and Shivaay waiting! 🥰",
-    "Universe wants you to say Yes! ✨",
-    "No is not your destiny! 💕",
-    "Give up and say Yes! 💝",
-    "This button has its own mind! 🤪",
-    "You will never catch me! 😂"
-];
-
-function startNoButton() {
-    if (noStarted) return;
-    noStarted = true;
-    posX = window.innerWidth - BW - 50;
-    posY = window.innerHeight / 2;
-    btnNo.style.left = posX + "px";
-    btnNo.style.top = posY + "px";
-    requestAnimationFrame(moveButton);
-    setInterval(function() {
-        if (dead) return;
-        var spd = Math.sqrt(velX*velX + velY*velY);
-        if (spd > normalSpeed) { velX *= 0.95; velY *= 0.95; }
-        if (spd < normalSpeed) {
-            var angle = Math.atan2(velY, velX);
-            velX = Math.cos(angle)*normalSpeed;
-            velY = Math.sin(angle)*normalSpeed;
-        }
-        if (Math.random() < 0.1) {
-            velX += (Math.random()-0.5)*1;
-            velY += (Math.random()-0.5)*1;
-        }
-    }, 200);
-}
-
-function moveButton() {
-    if (dead) return;
-    var maxX = window.innerWidth - BW - PAD;
-    var maxY = window.innerHeight - BH - PAD;
-    posX += velX; posY += velY;
-    if (posX <= PAD) { posX = PAD; velX = Math.abs(velX); }
-    if (posX >= maxX) { posX = maxX; velX = -Math.abs(velX); }
-    if (posY <= PAD) { posY = PAD; velY = Math.abs(velY); }
-    if (posY >= maxY) { posY = maxY; velY = -Math.abs(velY); }
-    btnNo.style.left = posX + "px";
-    btnNo.style.top = posY + "px";
-    requestAnimationFrame(moveButton);
-}
-
-document.addEventListener("mousemove", function(e) {
-    if (dead || !noStarted) return;
-    var cx = posX+BW/2; var cy = posY+BH/2;
-    var dx = e.clientX-cx; var dy = e.clientY-cy;
-    var dist = Math.sqrt(dx*dx+dy*dy);
-    if (dist < 150) {
-        if (dist > 0) { velX = (-dx/dist)*10; velY = (-dy/dist)*10; }
-        tries++; noMsg.textContent = messages[tries%messages.length];
-        if (tries > 2) {
-            var ns = Math.min(1+tries*0.03, 1.4);
-            document.getElementById("btnYes").style.transform = "scale("+ns+")";
-        }
-    }
+var btnNo=document.getElementById("btnNo");
+var noMsg=document.getElementById("noAttempts");
+var tries=0;var dead=false;
+var BW=160;var BH=56;var PAD=20;
+var posX=0;var posY=0;var velX=2;var velY=1.5;var normalSpeed=2;var noStarted=false;
+var messages=["Haha nice try Kajal! 😜","Nope! Not happening! 😂","No button is running away! 🏃‍♂️","Abhishek wont allow No! 💪❤️","Shivaay says Mumma say Yes! 🥺👶","Button knows answer is Yes! 😄","Stop chasing No button! 💖","Catch me if you can! 😂","I am too fast for you! 🏃","Just click Yes Kajal! 😘","Abhishek and Shivaay waiting! 🥰","Universe wants you to say Yes! ✨","No is not your destiny! 💕","Give up and say Yes! 💝","This button has its own mind! 🤪","You will never catch me! 😂"];
+function startNoButton(){if(noStarted)return;noStarted=true;posX=window.innerWidth-BW-50;posY=window.innerHeight/2;btnNo.style.left=posX+"px";btnNo.style.top=posY+"px";requestAnimationFrame(moveButton);setInterval(function(){if(dead)return;var spd=Math.sqrt(velX*velX+velY*velY);if(spd>normalSpeed){velX*=0.95;velY*=0.95;}if(spd<normalSpeed){var angle=Math.atan2(velY,velX);velX=Math.cos(angle)*normalSpeed;velY=Math.sin(angle)*normalSpeed;}if(Math.random()<0.1){velX+=(Math.random()-0.5)*1;velY+=(Math.random()-0.5)*1;}},200);}
+function moveButton(){if(dead)return;var maxX=window.innerWidth-BW-PAD;var maxY=window.innerHeight-BH-PAD;posX+=velX;posY+=velY;if(posX<=PAD){posX=PAD;velX=Math.abs(velX);}if(posX>=maxX){posX=maxX;velX=-Math.abs(velX);}if(posY<=PAD){posY=PAD;velY=Math.abs(velY);}if(posY>=maxY){posY=maxY;velY=-Math.abs(velY);}btnNo.style.left=posX+"px";btnNo.style.top=posY+"px";requestAnimationFrame(moveButton);}
+document.addEventListener("mousemove",function(e){if(dead||!noStarted)return;var cx=posX+BW/2;var cy=posY+BH/2;var dx=e.clientX-cx;var dy=e.clientY-cy;var dist=Math.sqrt(dx*dx+dy*dy);if(dist<150){if(dist>0){velX=(-dx/dist)*10;velY=(-dy/dist)*10;}tries++;noMsg.textContent=messages[tries%messages.length];if(tries>2){var ns=Math.min(1+tries*0.03,1.4);document.getElementById("btnYes").style.transform="scale("+ns+")";}}});
+document.addEventListener("touchmove",function(e){if(dead||!noStarted)return;var t=e.touches[0];var cx=posX+BW/2;var cy=posY+BH/2;var dx=t.clientX-cx;var dy=t.clientY-cy;var dist=Math.sqrt(dx*dx+dy*dy);if(dist<150){if(dist>0){velX=(-dx/dist)*10;velY=(-dy/dist)*10;}tries++;noMsg.textContent=messages[tries%messages.length];}});
+btnNo.addEventListener("mouseenter",function(e){var dx=e.clientX-(posX+BW/2);var dy=e.clientY-(posY+BH/2);var len=Math.sqrt(dx*dx+dy*dy);if(len>0){velX=(-dx/len)*12;velY=(-dy/len)*12;}tries++;noMsg.textContent=messages[tries%messages.length];});
+btnNo.addEventListener("click",function(e){e.preventDefault();velX=(Math.random()>0.5?1:-1)*12;velY=(Math.random()>0.5?1:-1)*12;tries++;noMsg.textContent=messages[tries%messages.length];return false;});
+btnNo.addEventListener("touchstart",function(e){e.preventDefault();velX=(Math.random()>0.5?1:-1)*12;velY=(Math.random()>0.5?1:-1)*12;tries++;noMsg.textContent=messages[tries%messages.length];});
+document.getElementById("btnYes").addEventListener("click",function(){
+    dead=true;
+    document.getElementById("questionCard").style.display="none";
+    document.getElementById("btnNo").style.display="none";
+    document.getElementById("successScreen").style.display="block";
+    document.body.style.overflow="auto";
+    document.body.style.display="block";
+    document.body.style.padding="30px 0 80px 0";
+    document.getElementById("mainContainer").style.maxWidth="750px";
+    document.getElementById("mainContainer").style.margin="0 auto";
+    document.getElementById("mainContainer").style.padding="0 15px";
+    launchHearts();launchConfetti();
+    setInterval(launchHearts,3000);
+    setInterval(launchConfetti,4000);
+    window.scrollTo(0,0);
 });
-
-document.addEventListener("touchmove", function(e) {
-    if (dead || !noStarted) return;
-    var t = e.touches[0];
-    var cx = posX+BW/2; var cy = posY+BH/2;
-    var dx = t.clientX-cx; var dy = t.clientY-cy;
-    var dist = Math.sqrt(dx*dx+dy*dy);
-    if (dist < 150) {
-        if (dist > 0) { velX = (-dx/dist)*10; velY = (-dy/dist)*10; }
-        tries++; noMsg.textContent = messages[tries%messages.length];
-    }
-});
-
-btnNo.addEventListener("mouseenter", function(e) {
-    var dx = e.clientX-(posX+BW/2); var dy = e.clientY-(posY+BH/2);
-    var len = Math.sqrt(dx*dx+dy*dy);
-    if (len > 0) { velX = (-dx/len)*12; velY = (-dy/len)*12; }
-    tries++; noMsg.textContent = messages[tries%messages.length];
-});
-
-btnNo.addEventListener("click", function(e) {
-    e.preventDefault();
-    velX = (Math.random()>0.5?1:-1)*12;
-    velY = (Math.random()>0.5?1:-1)*12;
-    tries++; noMsg.textContent = messages[tries%messages.length];
-    return false;
-});
-
-btnNo.addEventListener("touchstart", function(e) {
-    e.preventDefault();
-    velX = (Math.random()>0.5?1:-1)*12;
-    velY = (Math.random()>0.5?1:-1)*12;
-    tries++; noMsg.textContent = messages[tries%messages.length];
-});
-
-
-/* ===================================================
-   YES BUTTON
-   =================================================== */
-document.getElementById("btnYes").addEventListener("click", function() {
-    dead = true;
-    document.getElementById("questionCard").style.display = "none";
-    document.getElementById("btnNo").style.display = "none";
-    document.getElementById("successScreen").style.display = "block";
-
-    document.body.style.overflow = "auto";
-    document.body.style.display = "block";
-    document.body.style.padding = "30px 0 80px 0";
-    document.getElementById("mainContainer").style.maxWidth = "750px";
-    document.getElementById("mainContainer").style.margin = "0 auto";
-    document.getElementById("mainContainer").style.padding = "0 15px";
-
-    launchHearts(); launchConfetti();
-    setInterval(launchHearts, 3000);
-    setInterval(launchConfetti, 4000);
-    window.scrollTo(0, 0);
-});
-
-function launchHearts() {
-    var h = ["💖","💕","💗","💓","💝","💘","❤️","💞","🌹","🥰","😍"];
-    var a = ["flyUp","flyDiag1","flyDiag2"];
-    for (var j = 0; j < 50; j++) {
-        (function(j) {
-            setTimeout(function() {
-                var d = document.createElement("div");
-                d.className = "flying-heart";
-                d.textContent = h[Math.floor(Math.random()*h.length)];
-                d.style.left = Math.random()*100+"vw";
-                d.style.top = (50+Math.random()*50)+"vh";
-                d.style.fontSize = (Math.random()*30+15)+"px";
-                d.style.animation = a[Math.floor(Math.random()*a.length)]+" "+(Math.random()*3+2)+"s ease-out forwards";
-                document.body.appendChild(d);
-                setTimeout(function(){ d.remove(); }, 5000);
-            }, j*60);
-        })(j);
-    }
-}
-
-function launchConfetti() {
-    var c = ["#ff4081","#ff6b9d","#ffb6c1","#ff69b4","#ff1493","#ffd700","#ff6347"];
-    for (var j = 0; j < 40; j++) {
-        (function(j) {
-            setTimeout(function() {
-                var d = document.createElement("div");
-                d.className = "confetti";
-                var sz = Math.random()*10+5;
-                d.style.width = sz+"px"; d.style.height = sz+"px";
-                d.style.background = c[Math.floor(Math.random()*c.length)];
-                d.style.left = Math.random()*100+"vw";
-                d.style.borderRadius = Math.random()>0.5?"50%":"2px";
-                d.style.animation = "confettiFall "+(Math.random()*3+2)+"s linear forwards";
-                document.body.appendChild(d);
-                setTimeout(function(){ d.remove(); }, 5000);
-            }, j*80);
-        })(j);
-    }
-}
+function launchHearts(){var h=["💖","💕","💗","💓","💝","💘","❤️","💞","🌹","🥰","😍"];var a=["flyUp","flyDiag1","flyDiag2"];for(var j=0;j<50;j++){(function(j){setTimeout(function(){var d=document.createElement("div");d.className="flying-heart";d.textContent=h[Math.floor(Math.random()*h.length)];d.style.left=Math.random()*100+"vw";d.style.top=(50+Math.random()*50)+"vh";d.style.fontSize=(Math.random()*30+15)+"px";d.style.animation=a[Math.floor(Math.random()*a.length)]+" "+(Math.random()*3+2)+"s ease-out forwards";document.body.appendChild(d);setTimeout(function(){d.remove();},5000);},j*60);})(j);}}
+function launchConfetti(){var c=["#ff4081","#ff6b9d","#ffb6c1","#ff69b4","#ff1493","#ffd700","#ff6347"];for(var j=0;j<40;j++){(function(j){setTimeout(function(){var d=document.createElement("div");d.className="confetti";var sz=Math.random()*10+5;d.style.width=sz+"px";d.style.height=sz+"px";d.style.background=c[Math.floor(Math.random()*c.length)];d.style.left=Math.random()*100+"vw";d.style.borderRadius=Math.random()>0.5?"50%":"2px";d.style.animation="confettiFall "+(Math.random()*3+2)+"s linear forwards";document.body.appendChild(d);setTimeout(function(){d.remove();},5000);},j*80);})(j);}}
 </script>
 </body>
 </html>
+EOF
