@@ -133,11 +133,78 @@
             margin-top: 20px; min-height: 25px; font-weight: 600;
         }
 
-        /* SUCCESS SCREEN */
+        /* WELCOME SCREEN */
+        .welcome-screen {
+            text-align: center;
+        }
+        .welcome-screen .card {
+            padding: 60px 50px;
+        }
+        .welcome-heart {
+            font-size: 100px;
+            animation: heartBeat 1.2s ease-in-out infinite;
+            display: inline-block;
+        }
+        .welcome-title {
+            font-family: Great Vibes, cursive;
+            font-size: 44px;
+            color: #ff6b9d;
+            margin: 25px 0 10px;
+        }
+        .welcome-sub {
+            font-family: Dancing Script, cursive;
+            font-size: 22px;
+            color: rgba(255,200,220,0.7);
+            margin-bottom: 10px;
+        }
+        .welcome-for {
+            font-family: Great Vibes, cursive;
+            font-size: 56px;
+            background: linear-gradient(45deg, #ff6b9d, #ff4081, #ff69b4, #ff1493);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
+            margin: 15px 0 30px;
+        }
+        .begin-btn {
+            padding: 18px 60px;
+            font-size: 22px;
+            font-family: Dancing Script, cursive;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff4081, #ff6b9d, #ff1493);
+            background-size: 200% 200%;
+            color: white;
+            box-shadow: 0 0 30px rgba(255,64,129,0.4);
+            animation: gradient 2s ease infinite, yesGlow 2s ease-in-out infinite, bounceBtn 2s ease-in-out infinite;
+        }
+        @keyframes bounceBtn {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .begin-btn:hover { transform: scale(1.1); }
+        .begin-note {
+            font-size: 12px;
+            color: rgba(255,200,220,0.35);
+            margin-top: 15px;
+        }
+        .music-icon {
+            display: inline-block;
+            animation: musicSpin 3s linear infinite;
+            font-size: 24px;
+        }
+        @keyframes musicSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* SUCCESS */
         .success-screen { display: none; text-align: center; }
         .success-screen .card {
-            max-width: 700px;
-            padding: 40px 40px;
+            max-width: 700px; padding: 40px 40px;
         }
         .success-screen .big-heart { font-size: 100px; }
         .success-title {
@@ -156,45 +223,100 @@
             font-size: 16px; color: rgba(255,200,220,0.7); margin: 10px 0;
         }
 
+        /* NOW PLAYING BAR */
+        .now-playing-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(20, 0, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255,100,150,0.2);
+            padding: 12px 20px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            z-index: 10000;
+        }
+        .np-bars {
+            display: flex; gap: 3px; align-items: flex-end; height: 20px;
+        }
+        .np-bar {
+            width: 4px; background: #ff4081; border-radius: 2px;
+            animation: musicBar 0.8s ease-in-out infinite alternate;
+        }
+        .np-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
+        .np-bar:nth-child(2) { height: 16px; animation-delay: 0.15s; }
+        .np-bar:nth-child(3) { height: 10px; animation-delay: 0.3s; }
+        .np-bar:nth-child(4) { height: 20px; animation-delay: 0.1s; }
+        .np-bar:nth-child(5) { height: 12px; animation-delay: 0.25s; }
+        @keyframes musicBar {
+            0% { transform: scaleY(0.3); opacity: 0.5; }
+            100% { transform: scaleY(1); opacity: 1; }
+        }
+        .np-text {
+            font-family: Poppins, sans-serif;
+            font-size: 13px; color: #ff9dc4;
+        }
+        .np-song {
+            font-family: Dancing Script, cursive;
+            font-size: 16px; color: #ffb6c1; font-weight: 700;
+        }
+
         /* SONG SECTION */
         .song-section {
-            margin: 25px 0;
-            padding: 25px 20px;
+            margin: 25px 0; padding: 30px 25px;
             background: rgba(255, 50, 100, 0.08);
             border-radius: 20px;
             border: 1px solid rgba(255,100,150,0.15);
         }
         .song-label {
             font-family: Poppins, sans-serif;
-            font-size: 13px; color: rgba(255,200,220,0.5);
-            margin-bottom: 5px; letter-spacing: 2px; text-transform: uppercase;
+            font-size: 12px; color: rgba(255,200,220,0.4);
+            letter-spacing: 3px; text-transform: uppercase;
+            margin-bottom: 8px;
         }
         .song-name {
             font-family: Great Vibes, cursive;
-            font-size: 32px; color: #ff9dc4; margin-bottom: 15px;
+            font-size: 36px; color: #ff9dc4; margin-bottom: 5px;
         }
-        .song-player {
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 10px;
+        .song-movie {
+            font-family: Poppins, sans-serif;
+            font-size: 13px; color: rgba(255,200,220,0.5);
+            margin-bottom: 20px;
         }
-        .play-btn {
+        .now-playing {
+            display: flex; align-items: center;
+            justify-content: center; gap: 8px; margin-bottom: 20px;
+        }
+        .music-bar {
+            width: 5px; background: #ff4081; border-radius: 3px;
+            animation: musicBar 0.8s ease-in-out infinite alternate;
+        }
+        .music-bar:nth-child(1) { height: 15px; animation-delay: 0s; }
+        .music-bar:nth-child(2) { height: 25px; animation-delay: 0.15s; }
+        .music-bar:nth-child(3) { height: 18px; animation-delay: 0.3s; }
+        .music-bar:nth-child(4) { height: 30px; animation-delay: 0.1s; }
+        .music-bar:nth-child(5) { height: 12px; animation-delay: 0.25s; }
+        .music-bar:nth-child(6) { height: 22px; animation-delay: 0.05s; }
+        .music-bar:nth-child(7) { height: 16px; animation-delay: 0.2s; }
+        .music-notes-float {
+            font-size: 20px;
+            animation: floatNote 2s ease-in-out infinite;
             display: inline-block;
-            margin-top: 10px;
-            padding: 12px 35px;
-            background: linear-gradient(45deg, #ff4081, #ff6b9d);
-            color: white; border-radius: 50px;
-            text-decoration: none;
-            font-family: Poppins, sans-serif; font-size: 14px;
-            box-shadow: 0 0 20px rgba(255,64,129,0.3);
-            transition: all 0.3s ease;
         }
-        .play-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255,64,129,0.5);
+        .music-notes-float:nth-child(2) { animation-delay: 0.5s; }
+        .music-notes-float:nth-child(3) { animation-delay: 1s; }
+        @keyframes floatNote {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-12px) rotate(10deg); opacity: 1; }
+        }
+        .song-playing-text {
+            font-family: Poppins, sans-serif;
+            font-size: 13px; color: rgba(255,200,220,0.6);
+            margin-top: 10px;
         }
 
-        /* LETTER SECTION */
+        /* LETTER */
         .letter-section {
             margin: 30px 0;
             background: rgba(255, 50, 100, 0.05);
@@ -223,25 +345,19 @@
             color: rgba(255, 225, 235, 0.9);
             line-height: 1.9;
         }
-        .letter-body p {
-            margin-bottom: 18px;
-        }
+        .letter-body p { margin-bottom: 18px; }
         .letter-love {
             font-family: Great Vibes, cursive;
-            font-size: 28px;
-            color: #ff4081;
-            text-align: center;
-            margin-top: 10px;
+            font-size: 28px; color: #ff4081;
+            text-align: center; margin-top: 10px;
         }
         .letter-sign {
             font-family: Great Vibes, cursive;
             font-size: 26px; color: #ff6b9d;
-            text-align: right;
-            margin-top: 25px;
+            text-align: right; margin-top: 25px;
             padding-top: 15px;
             border-top: 1px solid rgba(255,100,150,0.15);
         }
-
         .family-names {
             font-family: Great Vibes, cursive; font-size: 32px;
             color: #ff6b9d; margin-top: 25px;
@@ -302,6 +418,7 @@
         @media (max-width: 600px) {
             .card { padding: 30px 20px; }
             .success-screen .card { padding: 30px 18px; }
+            .welcome-screen .card { padding: 40px 25px; }
             .name-kajal { font-size: 38px; }
             .name-abhishek { font-size: 28px; }
             .question { font-size: 24px; }
@@ -312,15 +429,41 @@
             .letter-header { font-size: 26px; }
             .letter-body { font-size: 18px; }
             .letter-section { padding: 25px 18px; }
-            .song-name { font-size: 26px; }
+            .song-name { font-size: 28px; }
+            .welcome-title { font-size: 34px; }
+            .welcome-for { font-size: 44px; }
+            .begin-btn { padding: 16px 45px; font-size: 20px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- HIDDEN AUDIO - SAIYAARA -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://aac.saavncdn.com/630/5ac025ed44f04fdf8595e9a4f949bbff_320.mp4" type="audio/mp4">
+        <source src="https://aac.saavncdn.com/630/5ac025ed44f04fdf8595e9a4f949bbff_160.mp4" type="audio/mp4">
+    </audio>
+
     <div class="main-container" id="mainContainer">
-        <!-- QUESTION CARD -->
-        <div class="card" id="questionCard">
+
+        <!-- SCREEN 1: WELCOME -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <div class="card">
+                <div class="welcome-heart">💌</div>
+                <div class="welcome-title">Something Special</div>
+                <div class="welcome-sub">is waiting for you...</div>
+                <div class="welcome-for">Kajal</div>
+                <div>
+                    <button class="begin-btn" onclick="startExperience()">
+                        <span class="music-icon">🎵</span> Tap To Open <span class="music-icon">🎵</span>
+                    </button>
+                </div>
+                <div class="begin-note">🔊 Turn your volume up for the best experience 💕</div>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: QUESTION -->
+        <div class="card" id="questionCard" style="display:none;">
             <div class="envelope-icon">💌</div>
             <div class="big-heart">💖</div>
             <div class="names-section">
@@ -340,42 +483,37 @@
             <div class="no-attempts" id="noAttempts"></div>
         </div>
 
-        <!-- SUCCESS SCREEN -->
+        <!-- SCREEN 3: SUCCESS -->
         <div class="success-screen" id="successScreen">
             <div class="card">
-
                 <div class="big-heart pop-in">💖</div>
-
                 <div class="success-title pop-in" style="animation-delay:0.3s">Yaaay!</div>
-
                 <div class="success-message pop-in" style="animation-delay:0.5s">
                     I knew you would say Yes! 🥰<br>
                     You make my world beautiful, Kajal! 🌹
                 </div>
-
                 <div class="success-sub pop-in" style="animation-delay:0.7s">
                     Together forever with our little Shivaay 👨‍👩‍👦
                 </div>
 
                 <!-- SONG SECTION -->
                 <div class="song-section pop-in" style="animation-delay:0.9s">
-                    <div class="song-label">Our Song</div>
-                    <div class="song-name">🎵 Saiyaara 🎵</div>
-                    <div class="song-player">
-                        <iframe
-                            width="100%"
-                            height="166"
-                            scrolling="no"
-                            frameborder="no"
-                            allow="autoplay"
-                            src="https://www.youtube.com/embed/ms5a1Gq4MjA?autoplay=1&loop=1"
-                            style="border-radius:12px;"
-                            allowfullscreen>
-                        </iframe>
+                    <div class="song-label">now playing for you</div>
+                    <span class="music-notes-float">🎵</span>
+                    <span class="music-notes-float">🎶</span>
+                    <span class="music-notes-float">🎵</span>
+                    <div class="song-name">Saiyaara</div>
+                    <div class="song-movie">Ek Tha Tiger | Mohit Chauhan, Taraannum Mallik</div>
+                    <div class="now-playing">
+                        <div class="music-bar"></div>
+                        <div class="music-bar"></div>
+                        <div class="music-bar"></div>
+                        <div class="music-bar"></div>
+                        <div class="music-bar"></div>
+                        <div class="music-bar"></div>
+                        <div class="music-bar"></div>
                     </div>
-                    <a class="play-btn" href="https://www.youtube.com/results?search_query=saiyaara+ek+tha+tiger+full+song" target="_blank">
-                        🎵 Play Saiyaara on YouTube 🎵
-                    </a>
+                    <div class="song-playing-text">🎵 Playing in background while you read... 💕</div>
                 </div>
 
                 <!-- LOVE LETTER -->
@@ -401,27 +539,36 @@
                 <div class="pop-in" style="animation-delay:2s;font-size:30px;margin:15px 0;">
                     🌹💐🌹💐🌹
                 </div>
-
                 <div class="pop-in" style="animation-delay:2.2s">
                     <div style="font-size:22px;font-family:Dancing Script,cursive;color:#ffb6c1;margin:10px 0;">
                         Happy Valentines Day! 🎉💝🎉
                     </div>
                 </div>
-
                 <div class="family-names pop-in" style="animation-delay:2.4s">
                     Abhishek <span>❤️</span> Kajal <span>❤️</span> Shivaay
                 </div>
-
                 <div class="pop-in" style="animation-delay:2.6s;margin-top:15px;color:rgba(255,200,220,0.5);font-size:13px;">
                     Made with love by your husband 💕
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- NO BUTTON - LIVES OUTSIDE SO IT CAN BOUNCE FREELY -->
-    <button class="btn-no" id="btnNo">No 😢</button>
+    <!-- NO BUTTON -->
+    <button class="btn-no" id="btnNo" style="display:none;">No 😢</button>
+
+    <!-- NOW PLAYING BAR AT BOTTOM -->
+    <div class="now-playing-bar" id="npBar">
+        <div class="np-bars">
+            <div class="np-bar"></div>
+            <div class="np-bar"></div>
+            <div class="np-bar"></div>
+            <div class="np-bar"></div>
+            <div class="np-bar"></div>
+        </div>
+        <div class="np-text">Now Playing:</div>
+        <div class="np-song">🎵 Saiyaara - Ek Tha Tiger</div>
+    </div>
 
 <script>
 var i;
@@ -453,27 +600,76 @@ setInterval(function(){
 }, 900);
 
 /* ==========================================
-   NO BUTTON - BOUNCES LIKE DVD SCREENSAVER
-   ALWAYS VISIBLE, NEVER GOES OFF SCREEN
+   SCREEN 1: WELCOME - START EXPERIENCE
    ========================================== */
 
+var bgMusic = document.getElementById("bgMusic");
+var songStarted = false;
+
+function startExperience() {
+    /* Start the song */
+    bgMusic.volume = 0.7;
+    bgMusic.play().then(function() {
+        songStarted = true;
+        /* Show now playing bar */
+        document.getElementById("npBar").style.display = "flex";
+    }).catch(function() {
+        /* If audio fails, still continue */
+        songStarted = false;
+    });
+
+    /* Hide welcome, show question */
+    document.getElementById("welcomeScreen").style.display = "none";
+    document.getElementById("questionCard").style.display = "block";
+
+    /* Show and start No button */
+    btnNo.style.display = "block";
+    startNoButton();
+}
+
+/* ==========================================
+   NO BUTTON - BOUNCING
+   ========================================== */
 var btnNo = document.getElementById("btnNo");
 var noMsg = document.getElementById("noAttempts");
 var tries = 0;
 var dead = false;
-
 var BW = 160;
 var BH = 56;
 var PAD = 20;
-
 var posX = window.innerWidth - BW - 50;
 var posY = window.innerHeight / 2;
 var velX = 2;
 var velY = 1.5;
 var normalSpeed = 2;
+var noStarted = false;
 
-btnNo.style.left = posX + "px";
-btnNo.style.top = posY + "px";
+function startNoButton() {
+    if (noStarted) return;
+    noStarted = true;
+
+    posX = window.innerWidth - BW - 50;
+    posY = window.innerHeight / 2;
+    btnNo.style.left = posX + "px";
+    btnNo.style.top = posY + "px";
+
+    requestAnimationFrame(moveButton);
+
+    setInterval(function() {
+        if (dead) return;
+        var spd = Math.sqrt(velX*velX + velY*velY);
+        if (spd > normalSpeed) { velX = velX*0.95; velY = velY*0.95; }
+        if (spd < normalSpeed) {
+            var angle = Math.atan2(velY, velX);
+            velX = Math.cos(angle)*normalSpeed;
+            velY = Math.sin(angle)*normalSpeed;
+        }
+        if (Math.random() < 0.1) {
+            velX = velX + (Math.random()-0.5)*1;
+            velY = velY + (Math.random()-0.5)*1;
+        }
+    }, 200);
+}
 
 var messages = [
     "Haha nice try Kajal! 😜",
@@ -494,64 +690,52 @@ var messages = [
     "You will never catch me! 😂"
 ];
 
-/* MAIN LOOP - BUTTON BOUNCES CONTINUOUSLY */
 function moveButton() {
     if (dead) return;
     var maxX = window.innerWidth - BW - PAD;
     var maxY = window.innerHeight - BH - PAD;
-
     posX = posX + velX;
     posY = posY + velY;
-
     if (posX <= PAD) { posX = PAD; velX = Math.abs(velX); }
     if (posX >= maxX) { posX = maxX; velX = -Math.abs(velX); }
     if (posY <= PAD) { posY = PAD; velY = Math.abs(velY); }
     if (posY >= maxY) { posY = maxY; velY = -Math.abs(velY); }
-
     btnNo.style.left = posX + "px";
     btnNo.style.top = posY + "px";
-
     requestAnimationFrame(moveButton);
 }
-requestAnimationFrame(moveButton);
 
-/* WHEN MOUSE GETS NEAR - SPEED UP AND RUN AWAY */
 document.addEventListener("mousemove", function(e) {
-    if (dead) return;
-    var cx = posX + BW / 2;
-    var cy = posY + BH / 2;
+    if (dead || !noStarted) return;
+    var cx = posX + BW/2;
+    var cy = posY + BH/2;
     var dx = e.clientX - cx;
     var dy = e.clientY - cy;
-    var dist = Math.sqrt(dx * dx + dy * dy);
-
+    var dist = Math.sqrt(dx*dx + dy*dy);
     if (dist < 150) {
-        var len = Math.sqrt(dx * dx + dy * dy);
-        if (len > 0) {
-            velX = (-dx / len) * 10;
-            velY = (-dy / len) * 10;
-        }
+        var len = Math.sqrt(dx*dx + dy*dy);
+        if (len > 0) { velX = (-dx/len)*10; velY = (-dy/len)*10; }
         tries++;
         noMsg.textContent = messages[tries % messages.length];
         if (tries > 2) {
             var yb = document.getElementById("btnYes");
-            var ns = Math.min(1 + tries * 0.03, 1.4);
+            var ns = Math.min(1 + tries*0.03, 1.4);
             yb.style.transform = "scale(" + ns + ")";
         }
     }
 });
 
-/* MOBILE TOUCH SUPPORT */
 document.addEventListener("touchmove", function(e) {
-    if (dead) return;
+    if (dead || !noStarted) return;
     var t = e.touches[0];
-    var cx = posX + BW / 2;
-    var cy = posY + BH / 2;
+    var cx = posX + BW/2;
+    var cy = posY + BH/2;
     var dx = t.clientX - cx;
     var dy = t.clientY - cy;
-    var dist = Math.sqrt(dx * dx + dy * dy);
+    var dist = Math.sqrt(dx*dx + dy*dy);
     if (dist < 150) {
-        var len = Math.sqrt(dx * dx + dy * dy);
-        if (len > 0) { velX = (-dx / len) * 10; velY = (-dy / len) * 10; }
+        var len = Math.sqrt(dx*dx + dy*dy);
+        if (len > 0) { velX = (-dx/len)*10; velY = (-dy/len)*10; }
         tries++;
         noMsg.textContent = messages[tries % messages.length];
     }
@@ -583,47 +767,33 @@ btnNo.addEventListener("touchstart", function(e) {
     noMsg.textContent = messages[tries % messages.length];
 });
 
-/* GRADUALLY SLOW DOWN TO NORMAL SPEED */
-setInterval(function() {
-    if (dead) return;
-    var spd = Math.sqrt(velX*velX + velY*velY);
-    if (spd > normalSpeed) { velX = velX * 0.95; velY = velY * 0.95; }
-    if (spd < normalSpeed) {
-        var angle = Math.atan2(velY, velX);
-        velX = Math.cos(angle) * normalSpeed;
-        velY = Math.sin(angle) * normalSpeed;
-    }
-    if (Math.random() < 0.1) {
-        velX = velX + (Math.random()-0.5)*1;
-        velY = velY + (Math.random()-0.5)*1;
-    }
-}, 200);
-
 
 /* ==========================================
-   YES BUTTON - CELEBRATION
+   YES BUTTON
    ========================================== */
-
 function sayYes() {
     dead = true;
     document.getElementById("questionCard").style.display = "none";
     btnNo.style.display = "none";
     document.getElementById("successScreen").style.display = "block";
 
-    /* MAKE PAGE SCROLLABLE */
     document.body.style.overflow = "auto";
     document.body.style.display = "block";
-    document.body.style.padding = "30px 0";
+    document.body.style.padding = "30px 0 80px 0";
     document.getElementById("mainContainer").style.maxWidth = "750px";
     document.getElementById("mainContainer").style.margin = "0 auto";
     document.getElementById("mainContainer").style.padding = "0 15px";
+
+    /* Make sure song is playing */
+    if (!songStarted) {
+        bgMusic.volume = 0.7;
+        bgMusic.play().catch(function(){});
+    }
 
     launchHearts();
     launchConfetti();
     setInterval(launchHearts, 3000);
     setInterval(launchConfetti, 4000);
-
-    /* Scroll to top */
     window.scrollTo(0, 0);
 }
 
